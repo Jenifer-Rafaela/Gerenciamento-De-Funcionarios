@@ -32,12 +32,6 @@ public class TelaFuncionarios extends JFrame implements ActionListener, WindowFo
 	private JButton btnEditar = new JButton("Editar");
 
 	private FuncionarioController funcionarioController = new FuncionarioController();
-	
-	
-	public static void main(String[] args) {
-		TelaFuncionarios tela = new TelaFuncionarios();
-		tela.setVisible(true);
-	}
 
 	public TelaFuncionarios() {
 		addWindowFocusListener(this);

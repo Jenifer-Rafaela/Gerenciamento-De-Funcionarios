@@ -33,11 +33,6 @@ public class TelaExcluir extends JFrame implements ActionListener {
 	private JButton btnRemover = new JButton("Remover");
 	private JButton btnBuscar = new JButton("Buscar");
 
-	//	public static void main(String[] args) {
-	//		TelaExcluir tela = new TelaExcluir();
-	//		tela.setVisible(true);
-	//	}
-
 	public TelaExcluir() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 530, 370);

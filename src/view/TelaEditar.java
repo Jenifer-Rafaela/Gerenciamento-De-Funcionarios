@@ -40,11 +40,6 @@ public class TelaEditar extends JFrame implements ActionListener{
 	private FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
 	private JComboBox<String> comboBoxSetor = new JComboBox<String>();
 
-	public static void main(String[] args) {
-		TelaEditar tela = new TelaEditar();
-		tela.setVisible(true);
-	}
-
 	/**
 	 * Create the frame.
 	 */
