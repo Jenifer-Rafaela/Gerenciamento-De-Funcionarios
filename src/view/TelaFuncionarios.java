@@ -112,7 +112,9 @@ public class TelaFuncionarios extends JFrame implements ActionListener, WindowFo
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == mntmSair) {
 			System.out.println("Botão sair foi selecionado..");
-			System.exit(0);
+			TelaLogin telaLogin = new TelaLogin();
+			telaLogin.setVisible(true);
+			this.dispose();
 		}
 		if(e.getSource() == btnCadastrar) {
 			System.out.println("Botão cadastrar foi selecionado..");

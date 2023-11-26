@@ -112,7 +112,7 @@ public class FuncionarioController {
 
 	public boolean login(String usuario, String senha) {
 
-		String select = "select id from usuarios where usuario = ? AND permissao = 'ADMIN' AND senha = ?";
+		String select = "select permissao from usuarios where usuario = ? AND senha = ?";
 
 		try {
 			con = bancoDeDados.conectar();
@@ -123,10 +123,20 @@ public class FuncionarioController {
 			queryData = query.executeQuery();
 
 			if(queryData.next()) {
-				con.close();
-				return true;
+				if(queryData.getString(1).equals("ADMIN")) {
+					con.close();
+					return true;					
+				} else {
+					System.out.println("linha - 130: Acesso Negado.");
+					JOptionPane.showMessageDialog(null, "Você não tem permissão para acessar o sistema."
+							, "Acesso Negado",
+							JOptionPane.ERROR_MESSAGE);
+					con.close();
+					return false;
+				}
+				
 			} else {
-				System.out.println("linha - 113: Login Incorreto");
+				System.out.println("linha - 135: Login Incorreto");
 				JOptionPane.showMessageDialog(null, "Email ou Senha Incorreto");
 				return false;
 			}
