@@ -1,0 +1,54 @@
+
+Banco de Dados
+usuario = jeni
+host = localhost
+senha = J1021
+porta = ?
+
+CREATE database gerencia;
+USE gerencia;
+
+create table setor(
+	setorId int primary key auto_increment,
+    nome varchar(100) not null
+);
+
+create table funcionarios(
+	id int primary key auto_increment,
+	Email varchar(256) not null unique,
+    Nome varchar(100) not null,
+    DN date not null,
+    CPF varchar (11) not null,
+    setorId int not null,
+    FOREIGN KEY (setorId) REFERENCES setor(setorId)
+);
+
+INSERT INTO SETOR(nome) VALUES
+	('Recursos Humanos'),
+	('Finanças e Contabilidade'),
+	('Suporte Técnico'),
+	('Gestão de Projetos'),
+	('Desenvolvimento');
+	
+INSERT INTO FUNCIONARIOS(Email,Nome,DN,CPF,setorID) VALUES
+	('ricardo@gmail.com','ricardo','1980-05-13','17345656756','1'),
+	('jose@gmail.com','josé','1975-02-02','11052654711','2'),
+	('luiz@gmail.com','luiz','1975-02-02','11052654715','3'),
+	('manoel@gmail.com','manoel','1975-02-02','98765432109','4');
+	
+create table usuarios(
+	id int primary key auto_increment,
+	usuario varchar(100) not null unique,
+    permissao varchar(5) not null,
+    senha varchar(8) not null
+);
+
+INSERT INTO USUARIOS(usuario,permissao,senha) VALUES
+	('admin','ADMIN','123456'),
+    ('user','USER','123456');
+
+
+
+
+
+
