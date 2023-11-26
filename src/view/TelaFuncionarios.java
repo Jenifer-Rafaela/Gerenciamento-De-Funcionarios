@@ -34,10 +34,10 @@ public class TelaFuncionarios extends JFrame implements ActionListener, WindowFo
 	private FuncionarioController funcionarioController = new FuncionarioController();
 	
 	
-//	public static void main(String[] args) {
-//		TelaFuncionarios tela = new TelaFuncionarios();
-//		tela.setVisible(true);
-//	}
+	public static void main(String[] args) {
+		TelaFuncionarios tela = new TelaFuncionarios();
+		tela.setVisible(true);
+	}
 
 	public TelaFuncionarios() {
 		addWindowFocusListener(this);
@@ -147,7 +147,7 @@ public class TelaFuncionarios extends JFrame implements ActionListener, WindowFo
 	}
 
 	private void mostrarFuncionarios() {
-		System.out.println("linha - 150: Mostrando funcionarios..");
+		System.out.println("linha - 150: Setando funcionarios..");
 
 		DefaultTableModel model = new DefaultTableModel();
 
@@ -164,6 +164,7 @@ public class TelaFuncionarios extends JFrame implements ActionListener, WindowFo
 	public void atualizarTabela() {
 		System.out.println("linha - 165: atualizando tabela..");
 		mostrarFuncionarios();
+		System.out.println("linha - 167: Tabela atualizada.");
 	}
 
 	private void columns() {
@@ -184,7 +185,5 @@ public class TelaFuncionarios extends JFrame implements ActionListener, WindowFo
 		table.getColumnModel().getColumn(4).setPreferredWidth(29);
 		table.getColumnModel().getColumn(4).setResizable(false);
 	}
-
-
 }
 

@@ -14,13 +14,9 @@ public class FuncionarioDTO {
 		this.nome = nome;
 		this.email = email;
 		this.cpf = cpf;
-		this.data = dataFormatada(data);
+		this.data = data;
 		this.setor = setor-1;
-	}	
-	
-	public FuncionarioDTO(String data){
-		this.data = dataFormatada(data);
-	}	
+	}		
 	
 	public String getNome() {
 		return nome;
@@ -65,13 +61,6 @@ public class FuncionarioDTO {
 	@Override
 	public String toString() {
 		return "DTO [nome=" + nome + ", email=" + email + ", cpf=" + cpf + ", data=" + data + ", setor=" + setor + "]";
-	}
-	
-	private String dataFormatada(String data) {
-		System.out.println("Formatando a data para exibição..");
-
-		String[] dataInteira = data.split("-");
-		return dataInteira[2]+"-"+dataInteira[1]+"-"+dataInteira[0];
 	}
 
 }

@@ -2,12 +2,10 @@ package view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.MaskFormatter;
-
 import DTO.FuncionarioDTO;
 import controller.FuncionarioController;
+import service.ManipuladorDados;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,12 +14,12 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JFormattedTextField;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 
 public class TelaExcluir extends JFrame implements ActionListener {
 	private FuncionarioController funcionarioController = new FuncionarioController();
+	private ManipuladorDados manipuladorDados = new ManipuladorDados();
 	private FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
 
 	private static final long serialVersionUID = 1L;
@@ -34,11 +32,11 @@ public class TelaExcluir extends JFrame implements ActionListener {
 	private JFormattedTextField fTextField_cpf;
 	private JButton btnRemover = new JButton("Remover");
 	private JButton btnBuscar = new JButton("Buscar");
-	
-//	public static void main(String[] args) {
-//		TelaExcluir tela = new TelaExcluir();
-//		tela.setVisible(true);
-//	}
+
+	//	public static void main(String[] args) {
+	//		TelaExcluir tela = new TelaExcluir();
+	//		tela.setVisible(true);
+	//	}
 
 	public TelaExcluir() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -84,7 +82,8 @@ public class TelaExcluir extends JFrame implements ActionListener {
 		lblCPF.setBounds(269, 164, 25, 14);
 		contentPane.add(lblCPF);
 
-		formatar();
+		fTextField_cpf = manipuladorDados.formatarCpf(fTextField_cpf);
+		fTextField_data = manipuladorDados.formatarData(fTextField_data);
 
 		fTextField_cpf.setEditable(false);
 		fTextField_cpf.setBounds(269, 180, 214, 31);
@@ -124,7 +123,7 @@ public class TelaExcluir extends JFrame implements ActionListener {
 
 		btnBuscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscar.addActionListener(this);
-		
+
 		btnBuscar.setForeground(Color.WHITE);
 		btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnBuscar.setFocusable(false);
@@ -133,10 +132,10 @@ public class TelaExcluir extends JFrame implements ActionListener {
 		btnBuscar.setBounds(129, 61, 89, 31);
 		contentPane.add(btnBuscar);
 
-		
+
 		btnRemover.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRemover.addActionListener(this);
-		
+
 		btnRemover.setForeground(Color.WHITE);
 		btnRemover.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnRemover.setFocusable(false);
@@ -144,10 +143,10 @@ public class TelaExcluir extends JFrame implements ActionListener {
 		btnRemover.setBackground(new Color(220, 53, 69));
 		btnRemover.setBounds(175, 288, 163, 31);
 		contentPane.add(btnRemover);
-		
+
 		buscarSetores();
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == btnRemover) {
@@ -155,37 +154,20 @@ public class TelaExcluir extends JFrame implements ActionListener {
 			funcionarioController.removerFuncionario(textField_buscar.getText());      
 			reset();
 		}
-		
+
 		if(e.getSource() == btnBuscar) {
 			System.out.println("linha - 160: Buscando Funcionário..");
-			
-			if(textField_buscar.getText().matches("^\\d+$")) {
 
-				funcionarioDTO = funcionarioController.buscarFuncionario(textField_buscar.getText());
+			funcionarioDTO = funcionarioController.buscarFuncionario(textField_buscar.getText(), textField_buscar);
 
-				if(funcionarioDTO == null) {
-					System.out.println("linha - 167: Funcionário não encontrado.");
-					JOptionPane.showMessageDialog(this, "Funcionario com código "+textField_buscar.getText()+" não foi encontrado.", "Campo Invalido",
-							JOptionPane.ERROR_MESSAGE);
-					reset();
-					textField_buscar.requestFocus();
-				} else {
-					System.out.println("linha - 173: Funcionário encontrado.");
-					
-					textField_nome.setText(funcionarioDTO.getNome());
-					textField_email.setText(funcionarioDTO.getEmail());
-					fTextField_data.setText(funcionarioDTO.getData());
-					fTextField_cpf.setText(funcionarioDTO.getCpf());
-					System.out.println(funcionarioDTO.getSetor());
-					comboBoxSetor.setSelectedIndex(funcionarioDTO.getSetor());
-				}
+			if(!(funcionarioDTO == null)) {
+				System.out.println("linha - 173: Funcionário encontrado.");
 
-			} else {
-				System.out.println("linha - 184: Código do funcionário é inválido.");
-				
-				JOptionPane.showMessageDialog(this, "O código do funcionario deve ser numérico!", "Campo Invalido",
-						JOptionPane.ERROR_MESSAGE);
-				textField_buscar.requestFocus();
+				textField_nome.setText(funcionarioDTO.getNome());
+				textField_email.setText(funcionarioDTO.getEmail());
+				fTextField_data.setText(funcionarioDTO.getData());
+				fTextField_cpf.setText(funcionarioDTO.getCpf());
+				comboBoxSetor.setSelectedIndex(funcionarioDTO.getSetor());
 			}
 		}
 	}
@@ -194,30 +176,6 @@ public class TelaExcluir extends JFrame implements ActionListener {
 		System.out.println("linha - 194: Setando comboBox Setor..");
 		DefaultComboBoxModel<String> boxModel = new DefaultComboBoxModel<String>();
 		comboBoxSetor.setModel(funcionarioController.buscarSetores(boxModel));	
-	}
-	
-	//Formata campos de CPF e Data
-	private void formatar() {
-		try {
-			System.out.println("linha - 202: Formatação sendo feita..");
-
-			MaskFormatter formatoCpf = new MaskFormatter("###.###.###-##");
-			formatoCpf.setPlaceholderCharacter('_');
-			JFormattedTextField jFormattedTextFieldCpf = new JFormattedTextField( formatoCpf );
-			jFormattedTextFieldCpf.setFocusLostBehavior( JFormattedTextField.COMMIT);
-
-			MaskFormatter formatoData = new MaskFormatter("##-##-####");
-			formatoData.setPlaceholderCharacter('_');
-			JFormattedTextField jFormattedTextFieldData = new JFormattedTextField( formatoData );
-			jFormattedTextFieldData.setFocusLostBehavior( JFormattedTextField.COMMIT);
-
-			fTextField_cpf = jFormattedTextFieldCpf;
-			fTextField_data = jFormattedTextFieldData;
-
-		} catch (ParseException e) {
-			System.out.println("linha - 218: Erro na formatação..");
-			e.printStackTrace();
-		}
 	}
 
 	private void reset() {
