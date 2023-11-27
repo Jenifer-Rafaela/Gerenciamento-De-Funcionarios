@@ -44,6 +44,7 @@ public class TelaEditar extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public TelaEditar() {
+		setTitle("Dev Company Enterprise");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 530, 370);
 		contentPane = new JPanel();

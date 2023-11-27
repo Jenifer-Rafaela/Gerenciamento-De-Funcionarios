@@ -34,6 +34,7 @@ public class TelaFuncionarios extends JFrame implements ActionListener, WindowFo
 	private FuncionarioController funcionarioController = new FuncionarioController();
 
 	public TelaFuncionarios() {
+		setTitle("Dev Company Enterprise");
 		addWindowFocusListener(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 908, 491);

@@ -29,6 +29,7 @@ public class TelaLogin extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public TelaLogin() {
+		setTitle("Dev Company Enterprise");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 336, 358);
 		loginPane = new JPanel();
