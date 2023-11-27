@@ -1,5 +1,8 @@
-# Gerenciamento-De-Funcionarios
+# Gerenciamento De Funcionarios
 O Sistema de Gerenciamento de Funcionários é uma aplicação desenvolvida para simplificar e automatizar o controle dos colaboradores em uma empresa. Com um conjunto abrangente de recursos, visa facilitar o cadastro, visualização, atualização e remoção de informações dos funcionários, oferecendo uma interface intuitiva e eficiente para a administração de recursos humanos.
+<h4 align="center"> 
+    :white_check_mark:  Projeto Finalizado  :white_check_mark:
+</h4>
 
 # Índice 
 * [Tecnologias](#Tecnologias)
@@ -59,4 +62,4 @@ O Sistema de Gerenciamento de Funcionários é uma aplicação desenvolvida para
 
 # Testes Unitários
 
-
+![Testes Gerencia](https://github.com/Jenifer-Rafaela/Gerenciamento-De-Funcionarios/assets/100365167/64bfc0b4-88fc-4d26-b37d-1e0db51dc79e)
