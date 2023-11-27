@@ -18,18 +18,18 @@ public class ManipuladorDados {
 
 	//Formata campo de CPF
 	public JFormattedTextField formatarCpf(JFormattedTextField fTextField_cpf) {
-		System.out.println("linha - 32: CPF sendo formatado..");
+		System.out.println("linha - 21: CPF sendo formatado..");
 		try {
 			MaskFormatter formatoCpf = new MaskFormatter("###.###.###-##");
 			formatoCpf.setPlaceholderCharacter('_');
 			JFormattedTextField jfTextField_cpf = new JFormattedTextField( formatoCpf );
 			jfTextField_cpf.setFocusLostBehavior( JFormattedTextField.COMMIT);
 
-			System.out.println("linha - 39: CPF formatado.");
+			System.out.println("linha - 28: CPF formatado.");
 			return fTextField_cpf = jfTextField_cpf;
 
 		} catch (ParseException e) {
-			System.out.println("linha - 43: Erro na formatação do CPF..");
+			System.out.println("linha - 32: Erro na formatação do CPF..");
 			System.out.println(e);
 			return null;
 		}
@@ -37,25 +37,25 @@ public class ManipuladorDados {
 
 	//Formata campo de Data
 	public JFormattedTextField formatarData(JFormattedTextField fTextField_data) {
-		System.out.println("linha - 51: Data sendo formatada..");
+		System.out.println("linha - 40: Data sendo formatada..");
 		try {
 			MaskFormatter formatoData = new MaskFormatter("##-##-####");
 			formatoData.setPlaceholderCharacter('_');
 			JFormattedTextField jfTextField_data = new JFormattedTextField( formatoData );
 			jfTextField_data.setFocusLostBehavior( JFormattedTextField.COMMIT);
 
-			System.out.println("linha - 58: Data formatada.");
+			System.out.println("linha - 47: Data formatada.");
 			return fTextField_data = jfTextField_data;
 
 		} catch (ParseException e) {
-			System.out.println("linha - 62: Erro na formatação da Data..");
+			System.out.println("linha - 51: Erro na formatação da Data..");
 			System.out.println(e);
 			return null;
 		}
 	}
 
-	public boolean validarData(String data,JFormattedTextField fTextField_data) {
-		System.out.println("linha - 56: Validando data..");
+	public boolean validarData(String data, JFormattedTextField fTextField_data) {
+		System.out.println("linha - 58: Validando data..");
 
 		long dataMax = 75;
 		long dataMin = 18;
@@ -63,7 +63,7 @@ public class ManipuladorDados {
 		LocalDate validarData = LocalDate.now();
 
 		if (data.replaceAll("[^0-9]", "").isEmpty() || data.replaceAll("[^0-9]", "").length() < 8) {
-			System.out.println("linha - 64: Data não informada");
+			System.out.println("linha - 66: Data não informada");
 			
 			JOptionPane.showMessageDialog(null, "O campo Data é obrigatório!", "Campo Invalido",
 					JOptionPane.ERROR_MESSAGE);
@@ -76,7 +76,7 @@ public class ManipuladorDados {
 
 			if (this.data.isBefore(validarData.minusYears(dataMax))
 					|| this.data.isAfter(validarData.minusYears(dataMin))) {
-				System.out.println("linha - 77: Data inválida");
+				System.out.println("linha - 79: Data inválida");
 				
 				JOptionPane.showMessageDialog(null, "Data informada é invalida.", "Campo Invalido",
 						JOptionPane.ERROR_MESSAGE);
@@ -84,7 +84,7 @@ public class ManipuladorDados {
 				fTextField_data.requestFocus();
 				return false;
 			} else {
-				System.out.println("linha - 85: Data válida");
+				System.out.println("linha - 87: Data válida");
 				return true;
 			}
 		}
@@ -92,24 +92,24 @@ public class ManipuladorDados {
 
 	
 	public boolean validarCPF(String cpf, JFormattedTextField fTextField_cpf) {
-		System.out.println("linha - 93: Validando cpf..");
+		System.out.println("linha - 95: Validando cpf..");
 
 		this.cpf = cpf.replaceAll("[^0-9]", "");
 
 		if (this.cpf.isEmpty() || this.cpf.length() < 11) {
-			System.out.println("linha - 98: CPF inválido");
+			System.out.println("linha - 100: CPF inválido");
 			JOptionPane.showMessageDialog(null, "O campo CPF é obrigatório!", "Campo Invalido",
 					JOptionPane.ERROR_MESSAGE);
 			fTextField_cpf.requestFocus();
 			return false;
 		} else {
-			System.out.println("linha - 104: CPF válido");
+			System.out.println("linha - 106: CPF válido");
 			return true;
 		}
 	}
 	
 	public boolean validarEmail(String email, JTextField textField_email) {
-		System.out.println("linha - 110: Validando email..");
+		System.out.println("linha - 112: Validando email..");
 		/*
 		^ - usado no começo de um regex
 		[A-Za-z0-9+_.-] - aceita letras maiusculas ou minusculas, numero e +_.- 
@@ -121,19 +121,19 @@ public class ManipuladorDados {
 		String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
 
 		if (email.isEmpty() || !(Pattern.matches(regex, email))) {
-			System.out.println("linha - 122: Email inválido");
+			System.out.println("linha - 124: Email inválido");
 
 			JOptionPane.showMessageDialog(null, "O campo Email é obrigatório!", "Campo Invalido",JOptionPane.ERROR_MESSAGE);
 			textField_email.requestFocus();
 			return false;
 		} else { 
-			System.out.println("linha - 128: Email válido");
+			System.out.println("linha - 130: Email válido");
 			return true;
 		}
 	}
 	
 	public boolean validarNome(String nome, JTextField textField_nome) {
-		System.out.println("linha - 134: Validando nome..");
+		System.out.println("linha - 136: Validando nome..");
 		/*
 		 * (?![0-9]*$): garante que a string não seja composta apenas por dígitos numéricos.
 		 * [A-Za-zÀ-ÖØ-öø-ÿ\s']{3,}: Corresponde a pelo menos 3 letras (maiúsculas ou minúsculas), espaços em branco e apóstrofos 
@@ -141,19 +141,19 @@ public class ManipuladorDados {
 		String regex = "^(?![0-9]*$)[A-Za-zÀ-ÖØ-öø-ÿ\\s']{3,}$";
 
 		if (nome.isEmpty() || !(Pattern.matches(regex, nome))) {
-			System.out.println("linha - 142: Nome inválido.");
+			System.out.println("linha - 144: Nome inválido.");
 			JOptionPane.showMessageDialog(null, "O campo Nome é obrigatório!", "Campo Invalido",
 					JOptionPane.ERROR_MESSAGE);
 			textField_nome.requestFocus();
 			return false;
 		} else {
-			System.out.println("linha - 148: Nome válido.");
+			System.out.println("linha - 150: Nome válido.");
 			return true;
 		}
 	}
 	
 	public String dataFormatada(String data) {
-		System.out.println("linha - 167: Formatando a data para exibição..");
+		System.out.println("linha - 156: Formatando a data para exibição..");
 		String[] dataInteira = data.split("-");
 		return dataInteira[2]+"-"+dataInteira[1]+"-"+dataInteira[0];
 	}
