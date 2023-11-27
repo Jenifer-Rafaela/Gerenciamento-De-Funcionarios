@@ -4,7 +4,7 @@ O Sistema de Gerenciamento de Funcionários é uma aplicação desenvolvida para
 # Índice 
 * [Tecnologias](#Tecnologias)
 * [Funcionalidades do projeto](#Funcionalidades-do-Projeto)
-* [Diagramas do Projeto](#Diagramas-Do-Projeto)
+* [Diagrama do Projeto](#Diagrama-Do-Projeto)
 * [Testes Unitários](#Testes-Unitários)
   
 # Tecnologias
@@ -52,8 +52,11 @@ O Sistema de Gerenciamento de Funcionários é uma aplicação desenvolvida para
 
 ![Sair](https://github.com/Jenifer-Rafaela/Gerenciamento-De-Funcionarios/assets/100365167/dfd5b038-51a7-4259-8ad7-123a40952c5b)
 
-# Diagramas Do Projeto
+# Diagrama Do Projeto
 - Esquema do Banco de Dados
-![CURSO](https://github.com/Jenifer-Rafaela/Instituicao-De-Ensino/assets/100365167/db08b747-acd2-4a56-982c-80bc18b95938)
+
+![Funcionarios BD](https://github.com/Jenifer-Rafaela/Gerenciamento-De-Funcionarios/assets/100365167/507b97d3-b03b-4435-a2ed-a7473084d56f)
 
 # Testes Unitários
+
+
